@@ -4,6 +4,7 @@ var mainTitle = document.querySelector('.poster-title');
 var mainQuote = document.querySelector('.poster-quote');
 
 //views
+var viewMainPoster = document.querySelector(".main-poster")
 var viewMakeOwnPoster = document.querySelector(".poster-form");
 var viewShowSavedPosters = document.querySelector(".saved-posters");
 
@@ -12,6 +13,7 @@ var buttonSaveThisPoster = document.querySelector(".save-poster");
 var buttonShowSavedPoster = document.querySelector(".show-saved");
 var buttonShowRandomPoster = document.querySelector(".show-random");
 var buttonMakeYourOwn = document.querySelector(".show-form");
+var buttonNevermindTakeMeBack = document.querySelector(".show-main")
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -116,6 +118,9 @@ var currentPoster;
 // event listeners go here 👇
 window.addEventListener('load', randomizePoster);
 buttonShowRandomPoster.addEventListener("click", randomizePoster);
+buttonNevermindTakeMeBack.addEventListener("click", toggleMakePoster)
+buttonMakeYourOwn.addEventListener('click', toggleMakePoster);
+
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -126,4 +131,8 @@ function randomizePoster() {
   mainImage.src = images[getRandomIndex(images)];
   mainTitle.innerText = titles[getRandomIndex(titles)];
   mainQuote.innerText = quotes[getRandomIndex(quotes)];
+}
+function toggleMakePoster() {
+  viewMainPoster.classList.toggle('hidden');
+  viewMakeOwnPoster.classList.toggle('hidden')
 }
