@@ -13,7 +13,9 @@ var buttonSaveThisPoster = document.querySelector(".save-poster");
 var buttonShowSavedPoster = document.querySelector(".show-saved");
 var buttonShowRandomPoster = document.querySelector(".show-random");
 var buttonMakeYourOwn = document.querySelector(".show-form");
-var buttonNevermindTakeMeBack = document.querySelector(".show-main")
+var buttonNevermindTakeMeBack = document.querySelector(".show-main");
+var buttonBackToMain = document.querySelector(".back-to-main");
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -120,6 +122,7 @@ window.addEventListener('load', randomizePoster);
 buttonShowRandomPoster.addEventListener("click", randomizePoster);
 buttonNevermindTakeMeBack.addEventListener("click", toggleMakePoster)
 buttonMakeYourOwn.addEventListener('click', toggleMakePoster);
+buttonShowSavedPoster.addEventListener('click', toggleShowSavedPoster)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -135,4 +138,8 @@ function randomizePoster() {
 function toggleMakePoster() {
   viewMainPoster.classList.toggle('hidden');
   viewMakeOwnPoster.classList.toggle('hidden')
+}
+function toggleShowSavedPoster() {
+  viewMainPoster.classList.toggle('hidden');
+  viewShowSavedPosters.classList.toggle('hidden')
 }
