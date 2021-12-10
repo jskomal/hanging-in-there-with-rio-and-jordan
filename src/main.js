@@ -2,9 +2,19 @@
 var mainImage = document.querySelector('.poster-img');
 var mainTitle = document.querySelector('.poster-title');
 var mainQuote = document.querySelector('.poster-quote');
-var showRandomPoster = document.querySelector('.show-random')
 
+//views
+var viewMainPoster = document.querySelector(".main-poster")
+var viewMakeOwnPoster = document.querySelector(".poster-form");
+var viewShowSavedPosters = document.querySelector(".saved-posters");
 
+//buttons
+var buttonSaveThisPoster = document.querySelector(".save-poster");
+var buttonShowSavedPoster = document.querySelector(".show-saved");
+var buttonShowRandomPoster = document.querySelector(".show-random");
+var buttonMakeYourOwn = document.querySelector(".show-form");
+var buttonNevermindTakeMeBack = document.querySelector(".show-main");
+var buttonBackToMain = document.querySelector(".back-to-main");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -107,9 +117,14 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-
 // event listeners go here 👇
-showRandomPoster.addEventListener("click", randomizePoster);
+window.addEventListener('load', randomizePoster);
+buttonShowRandomPoster.addEventListener("click", randomizePoster);
+buttonNevermindTakeMeBack.addEventListener("click", toggleMakePoster)
+buttonMakeYourOwn.addEventListener('click', toggleMakePoster);
+buttonShowSavedPoster.addEventListener('click', toggleShowSavedPoster);
+buttonBackToMain.addEventListener('click', toggleShowSavedPoster);
+
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -122,7 +137,12 @@ function randomizePoster() {
   mainQuote.innerText = quotes[getRandomIndex(quotes)];
 }
 
+function toggleMakePoster() {
+  viewMainPoster.classList.toggle('hidden');
+  viewMakeOwnPoster.classList.toggle('hidden')
+}
 
-mainImage.src = images[getRandomIndex(images)];
-mainTitle.innerText = titles[getRandomIndex(titles)];
-mainQuote.innerText = quotes[getRandomIndex(quotes)];
+function toggleShowSavedPoster() {
+  viewMainPoster.classList.toggle('hidden');
+  viewShowSavedPosters.classList.toggle('hidden')
+}
