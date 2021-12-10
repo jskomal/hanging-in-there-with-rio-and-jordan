@@ -123,7 +123,6 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-
 // event listeners go here 👇
 window.addEventListener("load", randomizePoster);
 buttonShowRandomPoster.addEventListener("click", randomizePoster);
@@ -167,7 +166,10 @@ function clickShowMyPoster() {
     mainImage.src,
     mainTitle.innerText,
     mainQuote.innerText
-    )
+  );
   event.preventDefault();
   toggleMakePoster();
-  }
+  images.push(inputImageURL.value);
+  titles.push(inputPosterTitle.value);
+  quotes.push(inputPosterQuote.value);
+}
