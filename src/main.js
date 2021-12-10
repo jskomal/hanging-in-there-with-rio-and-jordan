@@ -131,21 +131,27 @@ buttonMakeYourOwn.addEventListener("click", toggleMakePoster);
 buttonShowSavedPoster.addEventListener("click", toggleShowSavedPoster);
 buttonBackToMain.addEventListener("click", toggleShowSavedPoster);
 buttonShowMyPoster.addEventListener("click", clickShowMyPoster);
+buttonSaveThisPoster.addEventListener("click", clickSaveThisPoster);
+
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-function randomizePoster() {
-  mainImage.src = images[getRandomIndex(images)];
-  mainTitle.innerText = titles[getRandomIndex(titles)];
-  mainQuote.innerText = quotes[getRandomIndex(quotes)];
+function storeCurrentPoster() {
   currentPoster = new Poster(
     mainImage.src,
     mainTitle.innerText,
     mainQuote.innerText
   );
+}
+
+function randomizePoster() {
+  mainImage.src = images[getRandomIndex(images)];
+  mainTitle.innerText = titles[getRandomIndex(titles)];
+  mainQuote.innerText = quotes[getRandomIndex(quotes)];
+  storeCurrentPoster();
 }
 
 function toggleMakePoster() {
@@ -159,17 +165,18 @@ function toggleShowSavedPoster() {
 }
 
 function clickShowMyPoster() {
+  event.preventDefault();
   mainImage.src = inputImageURL.value;
   mainTitle.innerText = inputPosterTitle.value;
   mainQuote.innerText = inputPosterQuote.value;
-  currentPoster = new Poster(
-    mainImage.src,
-    mainTitle.innerText,
-    mainQuote.innerText
-  );
-  event.preventDefault();
+  storeCurrentPoster();
   toggleMakePoster();
   images.push(inputImageURL.value);
   titles.push(inputPosterTitle.value);
   quotes.push(inputPosterQuote.value);
+}
+
+function clickSaveThisPoster() {
+  storeCurrentPoster();
+    savedPosters.push(currentPoster)
 }
