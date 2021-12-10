@@ -1,10 +1,10 @@
 // query selector variables go here 👇
-var mainImage = document.querySelector('.poster-img');
-var mainTitle = document.querySelector('.poster-title');
-var mainQuote = document.querySelector('.poster-quote');
+var mainImage = document.querySelector(".poster-img");
+var mainTitle = document.querySelector(".poster-title");
+var mainQuote = document.querySelector(".poster-quote");
 
 //views
-var viewMainPoster = document.querySelector(".main-poster")
+var viewMainPoster = document.querySelector(".main-poster");
 var viewMakeOwnPoster = document.querySelector(".poster-form");
 var viewShowSavedPosters = document.querySelector(".saved-posters");
 
@@ -15,6 +15,12 @@ var buttonShowRandomPoster = document.querySelector(".show-random");
 var buttonMakeYourOwn = document.querySelector(".show-form");
 var buttonNevermindTakeMeBack = document.querySelector(".show-main");
 var buttonBackToMain = document.querySelector(".back-to-main");
+var buttonShowMyPoster = document.querySelector(".make-poster");
+
+//inputs
+var inputImageURL = document.querySelector("#poster-image-url");
+var inputPosterTitle = document.querySelector("#poster-title");
+var inputPosterQuote = document.querySelector("#poster-quote");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -35,7 +41,7 @@ var images = [
   "./assets/runner.jpg",
   "./assets/squirrel.jpg",
   "./assets/tiger.jpg",
-  "./assets/turtle.jpg"
+  "./assets/turtle.jpg",
 ];
 var titles = [
   "determination",
@@ -72,7 +78,7 @@ var titles = [
   "smile",
   "trust",
   "understanding",
-  "wisdom"
+  "wisdom",
 ];
 var quotes = [
   "Don’t downgrade your dream just to fit your reality, upgrade your conviction to match your destiny.",
@@ -112,19 +118,20 @@ var quotes = [
   "If you have good thoughts they will shine out of your face like sunbeams and you will always look lovely.",
   "No matter what people tell you, words and ideas can change the world.",
   "Each person must live their life as a model for others.",
-  "A champion is defined not by their wins but by how they can recover when they fall."
+  "A champion is defined not by their wins but by how they can recover when they fall.",
 ];
 var savedPosters = [];
 var currentPoster;
 
-// event listeners go here 👇
-window.addEventListener('load', randomizePoster);
-buttonShowRandomPoster.addEventListener("click", randomizePoster);
-buttonNevermindTakeMeBack.addEventListener("click", toggleMakePoster)
-buttonMakeYourOwn.addEventListener('click', toggleMakePoster);
-buttonShowSavedPoster.addEventListener('click', toggleShowSavedPoster);
-buttonBackToMain.addEventListener('click', toggleShowSavedPoster);
 
+// event listeners go here 👇
+window.addEventListener("load", randomizePoster);
+buttonShowRandomPoster.addEventListener("click", randomizePoster);
+buttonNevermindTakeMeBack.addEventListener("click", toggleMakePoster);
+buttonMakeYourOwn.addEventListener("click", toggleMakePoster);
+buttonShowSavedPoster.addEventListener("click", toggleShowSavedPoster);
+buttonBackToMain.addEventListener("click", toggleShowSavedPoster);
+buttonShowMyPoster.addEventListener("click", clickShowMyPoster);
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -135,14 +142,32 @@ function randomizePoster() {
   mainImage.src = images[getRandomIndex(images)];
   mainTitle.innerText = titles[getRandomIndex(titles)];
   mainQuote.innerText = quotes[getRandomIndex(quotes)];
+  currentPoster = new Poster(
+    mainImage.src,
+    mainTitle.innerText,
+    mainQuote.innerText
+  );
 }
 
 function toggleMakePoster() {
-  viewMainPoster.classList.toggle('hidden');
-  viewMakeOwnPoster.classList.toggle('hidden')
+  viewMainPoster.classList.toggle("hidden");
+  viewMakeOwnPoster.classList.toggle("hidden");
 }
 
 function toggleShowSavedPoster() {
-  viewMainPoster.classList.toggle('hidden');
-  viewShowSavedPosters.classList.toggle('hidden')
+  viewMainPoster.classList.toggle("hidden");
+  viewShowSavedPosters.classList.toggle("hidden");
 }
+
+function clickShowMyPoster() {
+  mainImage.src = inputImageURL.value;
+  mainTitle.innerText = inputPosterTitle.value;
+  mainQuote.innerText = inputPosterQuote.value;
+  currentPoster = new Poster(
+    mainImage.src,
+    mainTitle.innerText,
+    mainQuote.innerText
+    )
+  event.preventDefault();
+  toggleMakePoster();
+  }
