@@ -122,7 +122,8 @@ window.addEventListener('load', randomizePoster);
 buttonShowRandomPoster.addEventListener("click", randomizePoster);
 buttonNevermindTakeMeBack.addEventListener("click", toggleMakePoster)
 buttonMakeYourOwn.addEventListener('click', toggleMakePoster);
-buttonShowSavedPoster.addEventListener('click', toggleShowSavedPoster)
+buttonShowSavedPoster.addEventListener('click', toggleShowSavedPoster);
+buttonBackToMain.addEventListener('click', toggleShowSavedPoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -135,10 +136,12 @@ function randomizePoster() {
   mainTitle.innerText = titles[getRandomIndex(titles)];
   mainQuote.innerText = quotes[getRandomIndex(quotes)];
 }
+
 function toggleMakePoster() {
   viewMainPoster.classList.toggle('hidden');
   viewMakeOwnPoster.classList.toggle('hidden')
 }
+
 function toggleShowSavedPoster() {
   viewMainPoster.classList.toggle('hidden');
   viewShowSavedPosters.classList.toggle('hidden')
