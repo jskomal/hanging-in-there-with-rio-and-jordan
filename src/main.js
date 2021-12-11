@@ -163,6 +163,7 @@ function toggleMakePoster() {
 function toggleShowSavedPoster() {
   viewMainPoster.classList.toggle("hidden");
   viewShowSavedPosters.classList.toggle("hidden");
+  addMiniPosters();
 }
 
 function clickShowMyPoster() {
@@ -175,6 +176,16 @@ function clickShowMyPoster() {
   images.push(inputImageURL.value);
   titles.push(inputPosterTitle.value);
   quotes.push(inputPosterQuote.value);
+}
+
+function addMiniPosters() {
+  var emptyHTML = "";
+  for (i = 0; i < savedPosters.length; i++) {
+    emptyHTML += `<section class='mini-poster'><img src="${savedPosters[i].imageURL}"alt="images">
+<h2>${savedPosters[i].title}</h2>
+<h4>${savedPosters[i].quote}</h4></section>`;
+  }
+  gridSavedPosters.innerHTML = emptyHTML;
 }
 
 function clickSaveThisPoster() {
