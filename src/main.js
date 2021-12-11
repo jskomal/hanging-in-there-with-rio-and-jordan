@@ -195,20 +195,13 @@ function clickSaveThisPoster() {
     savedPosters.push(currentPoster);
   }
 }
-// Iteration 4 - Deleting Saved Posters
-// From the saved posters view, if a user double clicks a saved poster, it will be deleted
-// onclick functionality should not be used in any HTML code - all functionality should be through JavaScript.
-// Hint: How will you update the data model to achieve this?
-
-/*psuedo steps:
-add an eventlister for a double click on the grid view object
-that event will run a function that selects the proper poster via id
-and deletes that poster from the array 
-and then updates the inner HTML to reflect that deletion
-*/
 
 function deletePoster() {
-  var deletedPosterPlaceholder = new Poster('https://i.kym-cdn.com/entries/icons/original/000/033/046/b94.jpg', 'Deleted Image', 'It is gone, but never forgotten')
+  var deletedPosterPlaceholder = new Poster(
+    "https://i.kym-cdn.com/entries/icons/original/000/033/046/b94.jpg",
+    "Deleted Image",
+    "It is gone, but never forgotten"
+  );
   var targetID = event.target.parentNode.id;
   for (i = 0; i < savedPosters.length; i++) {
     if (savedPosters[i].id.toString() === targetID) {
