@@ -2,6 +2,7 @@
 var mainImage = document.querySelector(".poster-img");
 var mainTitle = document.querySelector(".poster-title");
 var mainQuote = document.querySelector(".poster-quote");
+var gridSavedPosters = document.querySelector(".saved-posters-grid");
 
 //views
 var viewMainPoster = document.querySelector(".main-poster");
@@ -177,6 +178,7 @@ function clickShowMyPoster() {
 }
 
 function clickSaveThisPoster() {
-  storeCurrentPoster();
-    savedPosters.push(currentPoster)
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  }
 }
