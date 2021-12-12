@@ -133,6 +133,7 @@ buttonShowSavedPoster.addEventListener("click", toggleShowSavedPoster);
 buttonBackToMain.addEventListener("click", toggleShowSavedPoster);
 buttonShowMyPoster.addEventListener("click", clickShowMyPoster);
 buttonSaveThisPoster.addEventListener("click", clickSaveThisPoster);
+gridSavedPosters.addEventListener("dblclick", deletePoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -181,9 +182,10 @@ function clickShowMyPoster(event) {
 function addMiniPosters() {
   var emptyHTML = "";
   for (i = 0; i < savedPosters.length; i++) {
-    emptyHTML += `<section class='mini-poster'><img src="${savedPosters[i].imageURL}"alt="images">
-<h2>${savedPosters[i].title}</h2>
-<h4>${savedPosters[i].quote}</h4></section>`;
+    emptyHTML += `<section class='mini-poster' id=${savedPosters[i].id}>
+    <img src="${savedPosters[i].imageURL}"alt="images">
+    <h2>${savedPosters[i].title}</h2>
+    <h4>${savedPosters[i].quote}</h4></section>`;
   }
   gridSavedPosters.innerHTML = emptyHTML;
 }
@@ -192,4 +194,20 @@ function clickSaveThisPoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
   }
+}
+
+function deletePoster() {
+  var deletedPosterPlaceholder = new Poster(
+    "https://i.kym-cdn.com/entries/icons/original/000/033/046/b94.jpg",
+    "Deleted Image",
+    "It is gone, but never forgotten"
+  );
+  var targetID = event.target.parentNode.id;
+  for (i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].id.toString() === targetID) {
+      savedPosters.splice(i, 1, deletedPosterPlaceholder);
+      break;
+    }
+  }
+  addMiniPosters();
 }
