@@ -166,7 +166,7 @@ function toggleShowSavedPoster() {
   addMiniPosters();
 }
 
-function clickShowMyPoster() {
+function clickShowMyPoster(event) {
   event.preventDefault();
   mainImage.src = inputImageURL.value;
   mainTitle.innerText = inputPosterTitle.value;
